@@ -14,6 +14,7 @@ import com.bmob.im.demo.R;
 
 /**
  * 播放录音文件--弃用，会出现播放错位，暂时还未解决.
+ * 
  * @ClassName: RecordPlayClickListener
  * @Description: TODO
  * @author smile
@@ -60,6 +61,7 @@ public class RecordPlayClickListener implements View.OnClickListener {
 
 	/**
 	 * 开启播放动画
+	 * 
 	 * @Title: startRecordAnimation
 	 * @Description: TODO
 	 * @param
@@ -72,13 +74,13 @@ public class RecordPlayClickListener implements View.OnClickListener {
 		} else {
 			iv_voice.setImageResource(R.anim.anim_chat_voice_left);
 		}
-		anim = (AnimationDrawable)iv_voice.getDrawable();
+		anim = (AnimationDrawable) iv_voice.getDrawable();
 		anim.start();
 	}
 
 	/**
 	 * 停止播放动画
-	 *
+	 * 
 	 * @Title: stopRecordAnimation
 	 * @Description: TODO
 	 * @param
@@ -91,7 +93,7 @@ public class RecordPlayClickListener implements View.OnClickListener {
 		} else {
 			iv_voice.setImageResource(R.drawable.voice_right3);
 		}
-		if(anim!=null){
+		if (anim != null) {
 			anim.stop();
 		}
 	}

@@ -54,7 +54,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * 个人资料页面
- *
+ * 
  * @ClassName: SetMyInfoActivity
  * @Description: TODO
  * @author smile
@@ -86,7 +86,7 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 					View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 		}
 		setContentView(R.layout.activity_set_info);
-		from = getIntent().getStringExtra("from");//me add other
+		from = getIntent().getStringExtra("from");// me add other
 		username = getIntent().getStringExtra("username");
 		initView();
 	}
@@ -124,24 +124,24 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 			initTopBarForLeft("详细资料");
 			iv_nickarraw.setVisibility(View.INVISIBLE);
 			iv_arraw.setVisibility(View.INVISIBLE);
-			//不管对方是不是你的好友，均可以发送消息--BmobIM_V1.1.2修改
+			// 不管对方是不是你的好友，均可以发送消息--BmobIM_V1.1.2修改
 			btn_chat.setVisibility(View.VISIBLE);
 			btn_chat.setOnClickListener(this);
 			if (from.equals("add")) {// 从附近的人列表添加好友--因为获取附近的人的方法里面有是否显示好友的情况，因此在这里需要判断下这个用户是否是自己的好友
 				if (mApplication.getContactList().containsKey(username)) {// 是好友
-//					btn_chat.setVisibility(View.VISIBLE);
-//					btn_chat.setOnClickListener(this);
+				// btn_chat.setVisibility(View.VISIBLE);
+				// btn_chat.setOnClickListener(this);
 					btn_back.setVisibility(View.VISIBLE);
 					btn_back.setOnClickListener(this);
 				} else {
-//					btn_chat.setVisibility(View.GONE);
+					// btn_chat.setVisibility(View.GONE);
 					btn_back.setVisibility(View.GONE);
 					btn_add_friend.setVisibility(View.VISIBLE);
 					btn_add_friend.setOnClickListener(this);
 				}
 			} else {// 查看他人
-//				btn_chat.setVisibility(View.VISIBLE);
-//				btn_chat.setOnClickListener(this);
+			// btn_chat.setVisibility(View.VISIBLE);
+			// btn_chat.setOnClickListener(this);
 				btn_back.setVisibility(View.VISIBLE);
 				btn_back.setOnClickListener(this);
 			}
@@ -199,7 +199,7 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 
 	/**
 	 * 更新头像 refreshAvatar
-	 *
+	 * 
 	 * @return void
 	 * @throws
 	 */
@@ -225,30 +225,32 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-			case R.id.btn_chat:// 发起聊天
-				Intent intent = new Intent(this, ChatActivity.class);
-				intent.putExtra("user", user);
-				startAnimActivity(intent);
-				finish();
-				break;
-			case R.id.layout_head:
-				showAvatarPop();
-				break;
-			case R.id.layout_nick:
-				startAnimActivity(UpdateInfoActivity.class);
-				break;
-			case R.id.layout_gender:// 性别
-				showSexChooseDialog();
-				break;
-			case R.id.btn_back:// 黑名单
-				showBlackDialog(user.getUsername());
-				break;
-			case R.id.btn_add_friend:// 添加好友
-				addFriend();
-				break;
+		case R.id.btn_chat:// 发起聊天
+			Intent intent = new Intent(this, ChatActivity.class);
+			intent.putExtra("user", user);
+			startAnimActivity(intent);
+			finish();
+			break;
+		case R.id.layout_head:
+			showAvatarPop();
+			break;
+		case R.id.layout_nick:
+			startAnimActivity(UpdateInfoActivity.class);
+			break;
+		case R.id.layout_gender:// 性别
+			showSexChooseDialog();
+			break;
+		case R.id.btn_back:// 黑名单
+			showBlackDialog(user.getUsername());
+			break;
+		case R.id.btn_add_friend:// 添加好友
+			addFriend();
+			break;
 		}
 	}
-	String[] sexs = new String[]{ "男", "女" };
+
+	String[] sexs = new String[] { "男", "女" };
+
 	private void showSexChooseDialog() {
 		new AlertDialog.Builder(this)
 				.setTitle("单选框")
@@ -256,29 +258,27 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 				.setSingleChoiceItems(sexs, 0,
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
-												int which) {
-								BmobLog.i("点击的是"+sexs[which]);
+									int which) {
+								BmobLog.i("点击的是" + sexs[which]);
 								updateInfo(which);
 								dialog.dismiss();
 							}
-						})
-				.setNegativeButton("取消", null)
-				.show();
+						}).setNegativeButton("取消", null).show();
 	}
 
-
-	/** 修改资料
-	 * updateInfo
+	/**
+	 * 修改资料 updateInfo
+	 * 
 	 * @Title: updateInfo
 	 * @return void
 	 * @throws
 	 */
 	private void updateInfo(int which) {
 		final User user = userManager.getCurrentUser(User.class);
-		BmobLog.i("updateInfo 性别："+user.getSex());
-		if(which==0){
+		BmobLog.i("updateInfo 性别：" + user.getSex());
+		if (which == 0) {
 			user.setSex(true);
-		}else{
+		} else {
 			user.setSex(false);
 		}
 		user.update(this, new UpdateListener() {
@@ -288,7 +288,7 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 				// TODO Auto-generated method stub
 				ShowToast("修改成功");
 				final User u = userManager.getCurrentUser(User.class);
-				BmobLog.i("修改成功后的sex = "+u.getSex());
+				BmobLog.i("修改成功后的sex = " + u.getSex());
 				tv_set_gender.setText(user.getSex() == true ? "男" : "女");
 			}
 
@@ -299,9 +299,10 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 			}
 		});
 	}
+
 	/**
 	 * 添加好友请求
-	 *
+	 * 
 	 * @Title: addFriend
 	 * @Description: TODO
 	 * @param
@@ -336,7 +337,7 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 
 	/**
 	 * 显示黑名单提示框
-	 *
+	 * 
 	 * @Title: showBlackDialog
 	 * @Description: TODO
 	 * @param
@@ -358,7 +359,10 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 						btn_back.setVisibility(View.GONE);
 						layout_black_tips.setVisibility(View.VISIBLE);
 						// 重新设置下内存中保存的好友列表
-						CustomApplcation.getInstance().setContactList(CollectionUtils.list2map(BmobDB.create(SetMyInfoActivity.this).getContactList()));
+						CustomApplcation.getInstance().setContactList(
+								CollectionUtils.list2map(BmobDB.create(
+										SetMyInfoActivity.this)
+										.getContactList()));
 					}
 
 					@Override
@@ -458,7 +462,7 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 	 * @throws
 	 */
 	private void startImageAction(Uri uri, int outputX, int outputY,
-								  int requestCode, boolean isCrop) {
+			int requestCode, boolean isCrop) {
 		Intent intent = null;
 		if (isCrop) {
 			intent = new Intent("com.android.camera.action.CROP");
@@ -488,62 +492,62 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
-			case BmobConstants.REQUESTCODE_UPLOADAVATAR_CAMERA:// 拍照修改头像
-				if (resultCode == RESULT_OK) {
-					if (!Environment.getExternalStorageState().equals(
-							Environment.MEDIA_MOUNTED)) {
-						ShowToast("SD不可用");
-						return;
-					}
-					isFromCamera = true;
-					File file = new File(filePath);
-					degree = PhotoUtil.readPictureDegree(file.getAbsolutePath());
-					Log.i("life", "拍照后的角度：" + degree);
-					startImageAction(Uri.fromFile(file), 200, 200,
-							BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP, true);
-				}
-				break;
-			case BmobConstants.REQUESTCODE_UPLOADAVATAR_LOCATION:// 本地修改头像
-				if (avatorPop != null) {
-					avatorPop.dismiss();
-				}
-				Uri uri = null;
-				if (data == null) {
+		case BmobConstants.REQUESTCODE_UPLOADAVATAR_CAMERA:// 拍照修改头像
+			if (resultCode == RESULT_OK) {
+				if (!Environment.getExternalStorageState().equals(
+						Environment.MEDIA_MOUNTED)) {
+					ShowToast("SD不可用");
 					return;
 				}
-				if (resultCode == RESULT_OK) {
-					if (!Environment.getExternalStorageState().equals(
-							Environment.MEDIA_MOUNTED)) {
-						ShowToast("SD不可用");
-						return;
-					}
-					isFromCamera = false;
-					uri = data.getData();
-					startImageAction(uri, 200, 200,
-							BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP, true);
-				} else {
-					ShowToast("照片获取失败");
+				isFromCamera = true;
+				File file = new File(filePath);
+				degree = PhotoUtil.readPictureDegree(file.getAbsolutePath());
+				Log.i("life", "拍照后的角度：" + degree);
+				startImageAction(Uri.fromFile(file), 200, 200,
+						BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP, true);
+			}
+			break;
+		case BmobConstants.REQUESTCODE_UPLOADAVATAR_LOCATION:// 本地修改头像
+			if (avatorPop != null) {
+				avatorPop.dismiss();
+			}
+			Uri uri = null;
+			if (data == null) {
+				return;
+			}
+			if (resultCode == RESULT_OK) {
+				if (!Environment.getExternalStorageState().equals(
+						Environment.MEDIA_MOUNTED)) {
+					ShowToast("SD不可用");
+					return;
 				}
+				isFromCamera = false;
+				uri = data.getData();
+				startImageAction(uri, 200, 200,
+						BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP, true);
+			} else {
+				ShowToast("照片获取失败");
+			}
 
-				break;
-			case BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP:// 裁剪头像返回
-				// TODO sent to crop
-				if (avatorPop != null) {
-					avatorPop.dismiss();
-				}
-				if (data == null) {
-					// Toast.makeText(this, "取消选择", Toast.LENGTH_SHORT).show();
-					return;
-				} else {
-					saveCropAvator(data);
-				}
-				// 初始化文件路径
-				filePath = "";
-				// 上传头像
-				uploadAvatar();
-				break;
-			default:
-				break;
+			break;
+		case BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP:// 裁剪头像返回
+			// TODO sent to crop
+			if (avatorPop != null) {
+				avatorPop.dismiss();
+			}
+			if (data == null) {
+				// Toast.makeText(this, "取消选择", Toast.LENGTH_SHORT).show();
+				return;
+			} else {
+				saveCropAvator(data);
+			}
+			// 初始化文件路径
+			filePath = "";
+			// 上传头像
+			uploadAvatar();
+			break;
+		default:
+			break;
 
 		}
 	}
@@ -599,7 +603,7 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 
 	/**
 	 * 保存裁剪的头像
-	 *
+	 * 
 	 * @param data
 	 */
 	private void saveCropAvator(Intent data) {

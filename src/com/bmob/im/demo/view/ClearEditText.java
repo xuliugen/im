@@ -24,7 +24,7 @@ import com.bmob.im.demo.R;
  * @date 2014-5-4 下午4:18:45
  */
 public class ClearEditText extends EditText implements
-        OnFocusChangeListener, TextWatcher {
+ OnFocusChangeListener, TextWatcher {
     /**
      * 删除按钮的引用
      */

@@ -6,17 +6,19 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-/**表情布局
+/**
+ * 表情布局
+ * 
  * @ClassName: EmoViewPagerAdapter
  * @Description: TODO
  * @author smile
  * @date 2014-6-17 下午4:17:18
  */
-public class EmoViewPagerAdapter extends PagerAdapter{
+public class EmoViewPagerAdapter extends PagerAdapter {
 
 	private List<View> views;
 
-	public EmoViewPagerAdapter(List<View> views){
+	public EmoViewPagerAdapter(List<View> views) {
 		this.views = views;
 	}
 

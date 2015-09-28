@@ -29,7 +29,7 @@ public class TimeUtil {
 
 	/**
 	 * 根据时间戳获取描述性时间，如3分钟前，1天前
-	 *
+	 * 
 	 * @param timestamp
 	 *            时间戳 单位为毫秒
 	 * @return 时间字符串
@@ -57,7 +57,7 @@ public class TimeUtil {
 
 	/**
 	 * 获取当前日期的指定格式的字符串
-	 *
+	 * 
 	 * @param format
 	 *            指定的日期时间格式，若为null或""则使用指定的格式"yyyy-MM-dd HH:MM"
 	 * @return
@@ -81,10 +81,10 @@ public class TimeUtil {
 	// long类型转换为String类型
 	// currentTime要转换的long类型的时间
 	// formatType要转换的string类型的时间格式
-	public static String longToString(long currentTime, String formatType){
-		String strTime="";
+	public static String longToString(long currentTime, String formatType) {
+		String strTime = "";
 		Date date = longToDate(currentTime, formatType);// long类型转成Date类型
-		strTime = dateToString(date, formatType); // date类型转成String 
+		strTime = dateToString(date, formatType); // date类型转成String
 		return strTime;
 	}
 
@@ -92,7 +92,7 @@ public class TimeUtil {
 	// strTime要转换的string类型的时间，formatType要转换的格式yyyy-MM-dd HH:mm:ss//yyyy年MM月dd日
 	// HH时mm分ss秒，
 	// strTime的时间格式必须要与formatType的时间格式相同
-	public static Date stringToDate(String strTime, String formatType){
+	public static Date stringToDate(String strTime, String formatType) {
 		SimpleDateFormat formatter = new SimpleDateFormat(formatType);
 		Date date = null;
 		try {
@@ -107,7 +107,7 @@ public class TimeUtil {
 	// long转换为Date类型
 	// currentTime要转换的long类型的时间
 	// formatType要转换的时间格式yyyy-MM-dd HH:mm:ss//yyyy年MM月dd日 HH时mm分ss秒
-	public static Date longToDate(long currentTime, String formatType){
+	public static Date longToDate(long currentTime, String formatType) {
 		Date dateOld = new Date(currentTime); // 根据long类型的毫秒数生命一个date类型的时间
 		String sDateTime = dateToString(dateOld, formatType); // 把date类型的时间转换为string
 		Date date = stringToDate(sDateTime, formatType); // 把String类型转换为Date类型
@@ -118,7 +118,7 @@ public class TimeUtil {
 	// strTime要转换的String类型的时间
 	// formatType时间格式
 	// strTime的时间格式和formatType的时间格式必须相同
-	public static long stringToLong(String strTime, String formatType){
+	public static long stringToLong(String strTime, String formatType) {
 		Date date = stringToDate(strTime, formatType); // String类型转成date类型
 		if (date == null) {
 			return 0;
@@ -144,7 +144,9 @@ public class TimeUtil {
 		return format.format(new Date(time));
 	}
 
-	/** 获取聊天时间：因为sdk的时间默认到秒故应该乘1000
+	/**
+	 * 获取聊天时间：因为sdk的时间默认到秒故应该乘1000
+	 * 
 	 * @Title: getChatTime
 	 * @Description: TODO
 	 * @param @param timesamp
@@ -153,7 +155,7 @@ public class TimeUtil {
 	 * @throws
 	 */
 	public static String getChatTime(long timesamp) {
-		long clearTime = timesamp*1000;
+		long clearTime = timesamp * 1000;
 		String result = "";
 		SimpleDateFormat sdf = new SimpleDateFormat("dd");
 		Date today = new Date(System.currentTimeMillis());
@@ -162,19 +164,19 @@ public class TimeUtil {
 				- Integer.parseInt(sdf.format(otherDay));
 
 		switch (temp) {
-			case 0:
-				result = "今天 " + getHourAndMin(clearTime);
-				break;
-			case 1:
-				result = "昨天 " + getHourAndMin(clearTime);
-				break;
-			case 2:
-				result = "前天 " + getHourAndMin(clearTime);
-				break;
+		case 0:
+			result = "今天 " + getHourAndMin(clearTime);
+			break;
+		case 1:
+			result = "昨天 " + getHourAndMin(clearTime);
+			break;
+		case 2:
+			result = "前天 " + getHourAndMin(clearTime);
+			break;
 
-			default:
-				result = getTime(clearTime);
-				break;
+		default:
+			result = getTime(clearTime);
+			break;
 		}
 
 		return result;

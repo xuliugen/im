@@ -34,7 +34,7 @@ import com.bmob.im.demo.view.HeaderLayout.onRightImageButtonClickListener;
 
 /**
  * 用于发送位置的界面
- *
+ * 
  * @ClassName: LocationActivity
  * @Description: TODO
  * @author smile
@@ -57,7 +57,8 @@ public class LocationActivity extends BaseActivity implements
 
 	static BDLocation lastLocation = null;
 
-	BitmapDescriptor bdgeo = BitmapDescriptorFactory.fromResource(R.drawable.icon_geo);
+	BitmapDescriptor bdgeo = BitmapDescriptorFactory
+			.fromResource(R.drawable.icon_geo);
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class LocationActivity extends BaseActivity implements
 		// 地图初始化
 		mMapView = (MapView) findViewById(R.id.bmapView);
 		mBaiduMap = mMapView.getMap();
-		//设置缩放级别
+		// 设置缩放级别
 		mBaiduMap.setMaxAndMinZoomLevel(18, 13);
 		// 注册 SDK 广播监听者
 		IntentFilter iFilter = new IntentFilter();
@@ -96,10 +97,12 @@ public class LocationActivity extends BaseActivity implements
 		} else {// 查看当前位置
 			initTopBarForLeft("位置");
 			Bundle b = intent.getExtras();
-			LatLng latlng = new LatLng(b.getDouble("latitude"), b.getDouble("longtitude"));//维度在前，经度在后
+			LatLng latlng = new LatLng(b.getDouble("latitude"),
+					b.getDouble("longtitude"));// 维度在前，经度在后
 			mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(latlng));
-			//显示当前位置图标
-			OverlayOptions ooA = new MarkerOptions().position(latlng).icon(bdgeo).zIndex(9);
+			// 显示当前位置图标
+			OverlayOptions ooA = new MarkerOptions().position(latlng)
+					.icon(bdgeo).zIndex(9);
 			mBaiduMap.addOverlay(ooA);
 		}
 
@@ -110,6 +113,7 @@ public class LocationActivity extends BaseActivity implements
 
 	/**
 	 * 回到聊天界面
+	 * 
 	 * @Title: gotoChatPage
 	 * @Description: TODO
 	 * @param
@@ -117,23 +121,25 @@ public class LocationActivity extends BaseActivity implements
 	 * @throws
 	 */
 	private void gotoChatPage() {
-		if(lastLocation!=null){
+		if (lastLocation != null) {
 			Intent intent = new Intent();
 			intent.putExtra("y", lastLocation.getLongitude());// 经度
 			intent.putExtra("x", lastLocation.getLatitude());// 维度
 			intent.putExtra("address", lastLocation.getAddrStr());
 			setResult(RESULT_OK, intent);
 			this.finish();
-		}else{
+		} else {
 			ShowToast("获取地理位置信息失败!");
 		}
 	}
 
 	private void initLocClient() {
-//		 开启定位图层
+		// 开启定位图层
 		mBaiduMap.setMyLocationEnabled(true);
-		mBaiduMap.setMyLocationConfigeration(new MyLocationConfigeration(
-				com.baidu.mapapi.map.MyLocationConfigeration.LocationMode.NORMAL, true, null));
+		mBaiduMap
+				.setMyLocationConfigeration(new MyLocationConfigeration(
+						com.baidu.mapapi.map.MyLocationConfigeration.LocationMode.NORMAL,
+						true, null));
 		// 定位初始化
 		mLocClient = new LocationClient(this);
 		mLocClient.registerLocationListener(myListener);
@@ -173,7 +179,7 @@ public class LocationActivity extends BaseActivity implements
 			if (lastLocation != null) {
 				if (lastLocation.getLatitude() == location.getLatitude()
 						&& lastLocation.getLongitude() == location
-						.getLongitude()) {
+								.getLongitude()) {
 					BmobLog.i("获取坐标相同");// 若两次请求获取到的地理位置坐标是相同的，则不再定位
 					mLocClient.stop();
 					return;
@@ -187,7 +193,7 @@ public class LocationActivity extends BaseActivity implements
 
 			MyLocationData locData = new MyLocationData.Builder()
 					.accuracy(location.getRadius())
-							// 此处设置开发者获取到的方向信息，顺时针0-360
+					// 此处设置开发者获取到的方向信息，顺时针0-360
 					.direction(100).latitude(location.getLatitude())
 					.longitude(location.getLongitude()).build();
 			mBaiduMap.setMyLocationData(locData);
@@ -203,7 +209,7 @@ public class LocationActivity extends BaseActivity implements
 			// 显示在地图上
 			MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
 			mBaiduMap.animateMapStatus(u);
-			//设置按钮可点击
+			// 设置按钮可点击
 			mHeaderLayout.getRightImageButton().setEnabled(true);
 		}
 
@@ -256,7 +262,7 @@ public class LocationActivity extends BaseActivity implements
 
 	@Override
 	protected void onDestroy() {
-		if(mLocClient!=null && mLocClient.isStarted()){
+		if (mLocClient != null && mLocClient.isStarted()) {
 			// 退出时销毁定位
 			mLocClient.stop();
 		}

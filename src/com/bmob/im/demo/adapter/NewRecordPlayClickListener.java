@@ -21,7 +21,7 @@ import com.bmob.im.demo.R;
 
 /**
  * 播放录音文件
- *
+ * 
  * @ClassName: NewRecordPlayClickListener
  * @Description: TODO
  * @author smile
@@ -42,7 +42,7 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 	BmobUserManager userManager;
 
 	public NewRecordPlayClickListener(Context context, BmobMsg msg,
-									  ImageView voice) {
+			ImageView voice) {
 		this.iv_voice = voice;
 		this.message = msg;
 		this.context = context;
@@ -55,7 +55,7 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 
 	/**
 	 * 播放语音
-	 *
+	 * 
 	 * @Title: playVoice
 	 * @Description: TODO
 	 * @param @param filePath
@@ -81,33 +81,34 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
 		}
 
-//		while (true) {
-//			try {
-//				mediaPlayer.reset();
-//				FileInputStream fis = new FileInputStream(new File(filePath));
-//				mediaPlayer.setDataSource(fis.getFD());
-//				mediaPlayer.prepare();
-//				break;
-//			} catch (IllegalArgumentException e) {
-//			} catch (IllegalStateException e) {
-//			} catch (IOException e) {
-//			}
-//		}
-//		
-//		isPlaying = true;
-//		currentMsg = message;
-//		mediaPlayer.start();
-//		startRecordAnimation();
-//		mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//
-//			@Override
-//			public void onCompletion(MediaPlayer mp) {
-//				// TODO Auto-generated method stub
-//				stopPlayRecord();
-//			}
-//
-//		});
-//        currentPlayListener = this;
+		// while (true) {
+		// try {
+		// mediaPlayer.reset();
+		// FileInputStream fis = new FileInputStream(new File(filePath));
+		// mediaPlayer.setDataSource(fis.getFD());
+		// mediaPlayer.prepare();
+		// break;
+		// } catch (IllegalArgumentException e) {
+		// } catch (IllegalStateException e) {
+		// } catch (IOException e) {
+		// }
+		// }
+		//
+		// isPlaying = true;
+		// currentMsg = message;
+		// mediaPlayer.start();
+		// startRecordAnimation();
+		// mediaPlayer.setOnCompletionListener(new
+		// MediaPlayer.OnCompletionListener() {
+		//
+		// @Override
+		// public void onCompletion(MediaPlayer mp) {
+		// // TODO Auto-generated method stub
+		// stopPlayRecord();
+		// }
+		//
+		// });
+		// currentPlayListener = this;
 
 		try {
 			mediaPlayer.reset();
@@ -150,7 +151,7 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 
 	/**
 	 * 停止播放
-	 *
+	 * 
 	 * @Title: stopPlayRecord
 	 * @Description: TODO
 	 * @param
@@ -168,7 +169,7 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 
 	/**
 	 * 开启播放动画
-	 *
+	 * 
 	 * @Title: startRecordAnimation
 	 * @Description: TODO
 	 * @param
@@ -187,7 +188,7 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 
 	/**
 	 * 停止播放动画
-	 *
+	 * 
 	 * @Title: stopRecordAnimation
 	 * @Description: TODO
 	 * @param

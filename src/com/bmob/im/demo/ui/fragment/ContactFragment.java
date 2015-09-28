@@ -54,13 +54,15 @@ import com.bmob.im.demo.view.dialog.DialogTips;
 
 /**
  * 联系人
+ * 
  * @ClassName: ContactFragment
  * @Description: TODO
  * @author smile
  * @date 2014-6-7 下午1:02:05
  */
 @SuppressLint("DefaultLocale")
-public class ContactFragment extends FragmentBase implements OnItemClickListener,OnItemLongClickListener{
+public class ContactFragment extends FragmentBase implements
+		OnItemClickListener, OnItemLongClickListener {
 
 	ClearEditText mClearEditText;
 
@@ -86,7 +88,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-							 Bundle savedInstanceState) {
+			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		return inflater.inflate(R.layout.fragment_contacts, container, false);
 	}
@@ -95,7 +97,8 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+		inputMethodManager = (InputMethodManager) getActivity()
+				.getSystemService(Context.INPUT_METHOD_SERVICE);
 		init();
 	}
 
@@ -117,20 +120,20 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	}
 
 	private void initEditText() {
-		mClearEditText = (ClearEditText)findViewById(R.id.et_msg_search);
+		mClearEditText = (ClearEditText) findViewById(R.id.et_msg_search);
 		// 根据输入框输入值的改变来过滤搜索
 		mClearEditText.addTextChangedListener(new TextWatcher() {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
-									  int count) {
+					int count) {
 				// 当输入框里面的值为空，更新为原来的列表，否则为过滤数据列表
 				filterData(s.toString());
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
-										  int after) {
+					int after) {
 
 			}
 
@@ -143,7 +146,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 
 	/**
 	 * 根据输入框中的值来过滤数据并更新ListView
-	 *
+	 * 
 	 * @param filterStr
 	 */
 	private void filterData(String filterStr) {
@@ -157,7 +160,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 				if (name != null) {
 					if (name.indexOf(filterStr.toString()) != -1
 							|| characterParser.getSelling(name).startsWith(
-							filterStr.toString())) {
+									filterStr.toString())) {
 						filterDateList.add(sortModel);
 					}
 				}
@@ -170,6 +173,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 
 	/**
 	 * 为ListView填充数据
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -188,7 +192,8 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 			String username = sortModel.getUsername();
 			// 若没有username
 			if (username != null) {
-				String pinyin = characterParser.getSelling(sortModel.getUsername());
+				String pinyin = characterParser.getSelling(sortModel
+						.getUsername());
 				String sortString = pinyin.substring(0, 1).toUpperCase();
 				// 正则表达式，判断首字母是否是英文字母
 				if (sortString.matches("[A-Z]")) {
@@ -205,24 +210,25 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 		Collections.sort(friends, pinyinComparator);
 	}
 
-
 	ImageView iv_msg_tips;
 	TextView tv_new_name;
-	LinearLayout layout_new;//新朋友
-	LinearLayout layout_near;//附近的人
+	LinearLayout layout_new;// 新朋友
+	LinearLayout layout_near;// 附近的人
 
 	private void initListView() {
-		list_friends= (ListView)findViewById(R.id.list_friends);
-		RelativeLayout headView = (RelativeLayout) mInflater.inflate(R.layout.include_new_friend, null);
-		iv_msg_tips = (ImageView)headView.findViewById(R.id.iv_msg_tips);
-		layout_new =(LinearLayout)headView.findViewById(R.id.layout_new);
-		layout_near =(LinearLayout)headView.findViewById(R.id.layout_near);
+		list_friends = (ListView) findViewById(R.id.list_friends);
+		RelativeLayout headView = (RelativeLayout) mInflater.inflate(
+				R.layout.include_new_friend, null);
+		iv_msg_tips = (ImageView) headView.findViewById(R.id.iv_msg_tips);
+		layout_new = (LinearLayout) headView.findViewById(R.id.layout_new);
+		layout_near = (LinearLayout) headView.findViewById(R.id.layout_near);
 		layout_new.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(getActivity(), NewFriendActivity.class);
+				Intent intent = new Intent(getActivity(),
+						NewFriendActivity.class);
 				intent.putExtra("from", "contact");
 				startAnimActivity(intent);
 			}
@@ -232,7 +238,8 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(getActivity(), NearPeopleActivity.class);
+				Intent intent = new Intent(getActivity(),
+						NearPeopleActivity.class);
 				startAnimActivity(intent);
 			}
 		});
@@ -250,7 +257,9 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 				// 隐藏软键盘
 				if (getActivity().getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {
 					if (getActivity().getCurrentFocus() != null)
-						inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+						inputMethodManager.hideSoftInputFromWindow(
+								getActivity().getCurrentFocus()
+										.getWindowToken(),
 								InputMethodManager.HIDE_NOT_ALWAYS);
 				}
 				return false;
@@ -269,10 +278,11 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	}
 
 	private void initRightLetterView() {
-		right_letter = (MyLetterView)findViewById(R.id.right_letter);
-		dialog = (TextView)findViewById(R.id.dialog);
+		right_letter = (MyLetterView) findViewById(R.id.right_letter);
+		dialog = (TextView) findViewById(R.id.dialog);
 		right_letter.setTextView(dialog);
-		right_letter.setOnTouchingLetterChangedListener(new LetterListViewListener());
+		right_letter
+				.setOnTouchingLetterChangedListener(new LetterListViewListener());
 	}
 
 	private class LetterListViewListener implements
@@ -288,40 +298,45 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 		}
 	}
 
-	/** 获取好友列表
-	 * queryMyfriends
+	/**
+	 * 获取好友列表 queryMyfriends
+	 * 
 	 * @return void
 	 * @throws
 	 */
 	private void queryMyfriends() {
-		//是否有新的好友请求
-		if(BmobDB.create(getActivity()).hasNewInvite()){
+		// 是否有新的好友请求
+		if (BmobDB.create(getActivity()).hasNewInvite()) {
 			iv_msg_tips.setVisibility(View.VISIBLE);
-		}else{
+		} else {
 			iv_msg_tips.setVisibility(View.GONE);
 		}
-		//在这里再做一次本地的好友数据库的检查，是为了本地好友数据库中已经添加了对方，但是界面却没有显示出来的问题
+		// 在这里再做一次本地的好友数据库的检查，是为了本地好友数据库中已经添加了对方，但是界面却没有显示出来的问题
 		// 重新设置下内存中保存的好友列表
-		CustomApplcation.getInstance().setContactList(CollectionUtils.list2map(BmobDB.create(getActivity()).getContactList()));
+		CustomApplcation.getInstance().setContactList(
+				CollectionUtils.list2map(BmobDB.create(getActivity())
+						.getContactList()));
 
-		Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
-		//组装新的User
+		Map<String, BmobChatUser> users = CustomApplcation.getInstance()
+				.getContactList();
+		// 组装新的User
 		filledData(CollectionUtils.map2list(users));
-		if(userAdapter==null){
+		if (userAdapter == null) {
 			userAdapter = new UserFriendAdapter(getActivity(), friends);
 			list_friends.setAdapter(userAdapter);
-		}else{
+		} else {
 			userAdapter.notifyDataSetChanged();
 		}
 
 	}
 
 	private boolean hidden;
+
 	@Override
 	public void onHiddenChanged(boolean hidden) {
 		super.onHiddenChanged(hidden);
 		this.hidden = hidden;
-		if(!hidden){
+		if (!hidden) {
 			refresh();
 		}
 	}
@@ -329,12 +344,12 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	@Override
 	public void onResume() {
 		super.onResume();
-		if(!hidden){
+		if (!hidden) {
 			refresh();
 		}
 	}
 
-	public void refresh(){
+	public void refresh() {
 		try {
 			getActivity().runOnUiThread(new Runnable() {
 				public void run() {
@@ -347,11 +362,12 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+			long arg3) {
 		// TODO Auto-generated method stub
-		User user = (User) userAdapter.getItem(position-1);
-		//先进入好友的详细资料页面
-		Intent intent =new Intent(getActivity(),SetMyInfoActivity.class);
+		User user = (User) userAdapter.getItem(position - 1);
+		// 先进入好友的详细资料页面
+		Intent intent = new Intent(getActivity(), SetMyInfoActivity.class);
 		intent.putExtra("from", "other");
 		intent.putExtra("username", user.getUsername());
 		startAnimActivity(intent);
@@ -359,16 +375,17 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	}
 
 	@Override
-	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int position,
-								   long arg3) {
+	public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+			int position, long arg3) {
 		// TODO Auto-generated method stub
-		User user = (User) userAdapter.getItem(position-1);
+		User user = (User) userAdapter.getItem(position - 1);
 		showDeleteDialog(user);
 		return true;
 	}
 
 	public void showDeleteDialog(final User user) {
-		DialogTips dialog = new DialogTips(getActivity(),user.getUsername(),"删除联系人", "确定",true,true);
+		DialogTips dialog = new DialogTips(getActivity(), user.getUsername(),
+				"删除联系人", "确定", true, true);
 		// 设置成功事件
 		dialog.SetOnSuccessListener(new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialogInterface, int userId) {
@@ -380,12 +397,13 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 		dialog = null;
 	}
 
-	/** 删除联系人
-	 * deleteContact
+	/**
+	 * 删除联系人 deleteContact
+	 * 
 	 * @return void
 	 * @throws
 	 */
-	private void deleteContact(final User user){
+	private void deleteContact(final User user) {
 		final ProgressDialog progress = new ProgressDialog(getActivity());
 		progress.setMessage("正在删除...");
 		progress.setCanceledOnTouchOutside(false);
@@ -396,9 +414,10 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 			public void onSuccess() {
 				// TODO Auto-generated method stub
 				ShowToast("删除成功");
-				//删除内存
-				CustomApplcation.getInstance().getContactList().remove(user.getUsername());
-				//更新界面
+				// 删除内存
+				CustomApplcation.getInstance().getContactList()
+						.remove(user.getUsername());
+				// 更新界面
 				getActivity().runOnUiThread(new Runnable() {
 					public void run() {
 						progress.dismiss();
@@ -410,7 +429,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 			@Override
 			public void onFailure(int arg0, String arg1) {
 				// TODO Auto-generated method stub
-				ShowToast("删除失败："+arg1);
+				ShowToast("删除失败：" + arg1);
 				progress.dismiss();
 			}
 		});

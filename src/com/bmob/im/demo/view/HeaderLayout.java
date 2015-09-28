@@ -12,7 +12,9 @@ import android.widget.TextView;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.util.PixelUtil;
 
-/** 自定义头部布局
+/**
+ * 自定义头部布局
+ * 
  * @ClassName: HeaderLayout
  * @Description: TODO
  * @author smile
@@ -68,25 +70,25 @@ public class HeaderLayout extends LinearLayout {
 
 	public void init(HeaderStyle hStyle) {
 		switch (hStyle) {
-			case DEFAULT_TITLE:
-				defaultTitle();
-				break;
+		case DEFAULT_TITLE:
+			defaultTitle();
+			break;
 
-			case TITLE_LIFT_IMAGEBUTTON:
-				defaultTitle();
-				titleLeftImageButton();
-				break;
+		case TITLE_LIFT_IMAGEBUTTON:
+			defaultTitle();
+			titleLeftImageButton();
+			break;
 
-			case TITLE_RIGHT_IMAGEBUTTON:
-				defaultTitle();
-				titleRightImageButton();
-				break;
+		case TITLE_RIGHT_IMAGEBUTTON:
+			defaultTitle();
+			titleRightImageButton();
+			break;
 
-			case TITLE_DOUBLE_IMAGEBUTTON:
-				defaultTitle();
-				titleLeftImageButton();
-				titleRightImageButton();
-				break;
+		case TITLE_DOUBLE_IMAGEBUTTON:
+			defaultTitle();
+			titleLeftImageButton();
+			titleRightImageButton();
+			break;
 		}
 	}
 
@@ -136,19 +138,22 @@ public class HeaderLayout extends LinearLayout {
 		});
 	}
 
-	/** 获取右边按钮
+	/**
+	 * 获取右边按钮
+	 * 
 	 * @Title: getRightImageButton
 	 * @Description: TODO
 	 * @param @return
 	 * @return Button
 	 * @throws
 	 */
-	public Button getRightImageButton(){
-		if(mRightImageButton!=null){
+	public Button getRightImageButton() {
+		if (mRightImageButton != null) {
 			return mRightImageButton;
 		}
 		return null;
 	}
+
 	public void setDefaultTitle(CharSequence title) {
 		if (title != null) {
 			mHtvSubTitle.setText(title);
@@ -157,8 +162,9 @@ public class HeaderLayout extends LinearLayout {
 		}
 	}
 
-	public void setTitleAndRightButton(CharSequence title, int backid,String text,
-									   onRightImageButtonClickListener onRightImageButtonClickListener) {
+	public void setTitleAndRightButton(CharSequence title, int backid,
+			String text,
+			onRightImageButtonClickListener onRightImageButtonClickListener) {
 		setDefaultTitle(title);
 		mLayoutRightContainer.setVisibility(View.VISIBLE);
 		if (mRightImageButton != null && backid > 0) {
@@ -171,20 +177,21 @@ public class HeaderLayout extends LinearLayout {
 	}
 
 	public void setTitleAndRightImageButton(CharSequence title, int backid,
-											onRightImageButtonClickListener onRightImageButtonClickListener) {
+			onRightImageButtonClickListener onRightImageButtonClickListener) {
 		setDefaultTitle(title);
 		mLayoutRightContainer.setVisibility(View.VISIBLE);
 		if (mRightImageButton != null && backid > 0) {
 			mRightImageButton.setWidth(PixelUtil.dp2px(30));
 			mRightImageButton.setHeight(PixelUtil.dp2px(30));
-			mRightImageButton.setTextColor(getResources().getColor(R.color.transparent));
+			mRightImageButton.setTextColor(getResources().getColor(
+					R.color.transparent));
 			mRightImageButton.setBackgroundResource(backid);
 			setOnRightImageButtonClickListener(onRightImageButtonClickListener);
 		}
 	}
 
 	public void setTitleAndLeftImageButton(CharSequence title, int id,
-										   onLeftImageButtonClickListener listener) {
+			onLeftImageButtonClickListener listener) {
 		setDefaultTitle(title);
 		if (mLeftImageButton != null && id > 0) {
 			mLeftImageButton.setImageResource(id);

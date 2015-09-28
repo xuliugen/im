@@ -10,7 +10,7 @@ import com.bmob.im.demo.view.HeaderLayout.onRightImageButtonClickListener;
 
 /**
  * 设置昵称和性别
- *
+ * 
  * @ClassName: SetNickAndSexActivity
  * @Description: TODO
  * @author smile
@@ -46,8 +46,9 @@ public class UpdateInfoActivity extends ActivityBase {
 		edit_nick = (EditText) findViewById(R.id.edit_nick);
 	}
 
-	/** 修改资料
-	 * updateInfo
+	/**
+	 * 修改资料 updateInfo
+	 * 
 	 * @Title: updateInfo
 	 * @return void
 	 * @throws

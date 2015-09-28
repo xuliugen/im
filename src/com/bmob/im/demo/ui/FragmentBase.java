@@ -18,7 +18,9 @@ import com.bmob.im.demo.view.HeaderLayout.HeaderStyle;
 import com.bmob.im.demo.view.HeaderLayout.onLeftImageButtonClickListener;
 import com.bmob.im.demo.view.HeaderLayout.onRightImageButtonClickListener;
 
-/** Fragmenet 基类
+/**
+ * Fragmenet 基类
+ * 
  * @ClassName: FragmentBase
  * @Description: TODO
  * @author smile
@@ -59,7 +61,6 @@ public abstract class FragmentBase extends Fragment {
 		mInflater = LayoutInflater.from(getActivity());
 	}
 
-
 	public FragmentBase() {
 
 	}
@@ -84,13 +85,13 @@ public abstract class FragmentBase extends Fragment {
 		mToast.show();
 	}
 
-
-	/** 打Log
-	 * ShowLog
+	/**
+	 * 打Log ShowLog
+	 * 
 	 * @return void
 	 * @throws
 	 */
-	public void ShowLog(String msg){
+	public void ShowLog(String msg) {
 		BmobLog.i(msg);
 	}
 
@@ -102,24 +103,25 @@ public abstract class FragmentBase extends Fragment {
 
 	/**
 	 * 只有title initTopBarLayoutByTitle
+	 * 
 	 * @Title: initTopBarLayoutByTitle
 	 * @throws
 	 */
 	public void initTopBarForOnlyTitle(String titleName) {
-		mHeaderLayout = (HeaderLayout)findViewById(R.id.common_actionbar);
+		mHeaderLayout = (HeaderLayout) findViewById(R.id.common_actionbar);
 		mHeaderLayout.init(HeaderStyle.DEFAULT_TITLE);
 		mHeaderLayout.setDefaultTitle(titleName);
 	}
 
 	/**
 	 * 初始化标题栏-带左右按钮
-	 *
+	 * 
 	 * @return void
 	 * @throws
 	 */
 	public void initTopBarForBoth(String titleName, int rightDrawableId,
-								  onRightImageButtonClickListener listener) {
-		mHeaderLayout = (HeaderLayout)findViewById(R.id.common_actionbar);
+			onRightImageButtonClickListener listener) {
+		mHeaderLayout = (HeaderLayout) findViewById(R.id.common_actionbar);
 		mHeaderLayout.init(HeaderStyle.TITLE_DOUBLE_IMAGEBUTTON);
 		mHeaderLayout.setTitleAndLeftImageButton(titleName,
 				R.drawable.base_action_bar_back_bg_selector,
@@ -130,25 +132,26 @@ public abstract class FragmentBase extends Fragment {
 
 	/**
 	 * 只有左边按钮和Title initTopBarLayout
-	 *
+	 * 
 	 * @throws
 	 */
 	public void initTopBarForLeft(String titleName) {
-		mHeaderLayout = (HeaderLayout)findViewById(R.id.common_actionbar);
+		mHeaderLayout = (HeaderLayout) findViewById(R.id.common_actionbar);
 		mHeaderLayout.init(HeaderStyle.TITLE_LIFT_IMAGEBUTTON);
 		mHeaderLayout.setTitleAndLeftImageButton(titleName,
 				R.drawable.base_action_bar_back_bg_selector,
 				new OnLeftButtonClickListener());
 	}
 
-	/** 右边+title
-	 * initTopBarForRight
+	/**
+	 * 右边+title initTopBarForRight
+	 * 
 	 * @return void
 	 * @throws
 	 */
-	public void initTopBarForRight(String titleName,int rightDrawableId,
-								   onRightImageButtonClickListener listener) {
-		mHeaderLayout = (HeaderLayout)findViewById(R.id.common_actionbar);
+	public void initTopBarForRight(String titleName, int rightDrawableId,
+			onRightImageButtonClickListener listener) {
+		mHeaderLayout = (HeaderLayout) findViewById(R.id.common_actionbar);
 		mHeaderLayout.init(HeaderStyle.TITLE_RIGHT_IMAGEBUTTON);
 		mHeaderLayout.setTitleAndRightImageButton(titleName, rightDrawableId,
 				listener);
@@ -166,6 +169,7 @@ public abstract class FragmentBase extends Fragment {
 
 	/**
 	 * 动画启动页面 startAnimActivity
+	 * 
 	 * @throws
 	 */
 	public void startAnimActivity(Intent intent) {

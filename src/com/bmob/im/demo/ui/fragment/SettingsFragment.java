@@ -23,26 +23,25 @@ import com.bmob.im.demo.util.SharePreferenceUtil;
 
 /**
  * 设置
- *
+ * 
  * @ClassName: SetFragment
  * @Description: TODO
  * @author smile
  * @date 2014-6-7 下午1:00:27
  */
 @SuppressLint("SimpleDateFormat")
-public class SettingsFragment extends FragmentBase implements OnClickListener{
+public class SettingsFragment extends FragmentBase implements OnClickListener {
 
 	Button btn_logout;
 	TextView tv_set_name;
 	RelativeLayout layout_info, rl_switch_notification, rl_switch_voice,
-			rl_switch_vibrate,layout_blacklist;
+			rl_switch_vibrate, layout_blacklist;
 
 	ImageView iv_open_notification, iv_close_notification, iv_open_voice,
 			iv_close_voice, iv_open_vibrate, iv_close_vibrate;
 
-	View view1,view2;
+	View view1, view2;
 	SharePreferenceUtil mSharedUtil;
-
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-							 Bundle savedInstanceState) {
+			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		return inflater.inflate(R.layout.fragment_set, container, false);
 	}
@@ -68,7 +67,7 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 
 	private void initView() {
 		initTopBarForOnlyTitle("设置");
-		//黑名单列表
+		// 黑名单列表
 		layout_blacklist = (RelativeLayout) findViewById(R.id.layout_blacklist);
 
 		layout_info = (RelativeLayout) findViewById(R.id.layout_info);
@@ -138,62 +137,62 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-			case R.id.layout_blacklist:// 启动到黑名单页面
-				startAnimActivity(new Intent(getActivity(),BlackListActivity.class));
-				break;
-			case R.id.layout_info:// 启动到个人资料页面
-				Intent intent =new Intent(getActivity(),SetMyInfoActivity.class);
-				intent.putExtra("from", "me");
-				startActivity(intent);
-				break;
-			case R.id.btn_logout:
-				CustomApplcation.getInstance().logout();
-				getActivity().finish();
-				startActivity(new Intent(getActivity(), LoginActivity.class));
-				break;
-			case R.id.rl_switch_notification:
-				if (iv_open_notification.getVisibility() == View.VISIBLE) {
-					iv_open_notification.setVisibility(View.INVISIBLE);
-					iv_close_notification.setVisibility(View.VISIBLE);
-					mSharedUtil.setPushNotifyEnable(false);
-					rl_switch_vibrate.setVisibility(View.GONE);
-					rl_switch_voice.setVisibility(View.GONE);
-					view1.setVisibility(View.GONE);
-					view2.setVisibility(View.GONE);
-				} else {
-					iv_open_notification.setVisibility(View.VISIBLE);
-					iv_close_notification.setVisibility(View.INVISIBLE);
-					mSharedUtil.setPushNotifyEnable(true);
-					rl_switch_vibrate.setVisibility(View.VISIBLE);
-					rl_switch_voice.setVisibility(View.VISIBLE);
-					view1.setVisibility(View.VISIBLE);
-					view2.setVisibility(View.VISIBLE);
-				}
+		case R.id.layout_blacklist:// 启动到黑名单页面
+			startAnimActivity(new Intent(getActivity(), BlackListActivity.class));
+			break;
+		case R.id.layout_info:// 启动到个人资料页面
+			Intent intent = new Intent(getActivity(), SetMyInfoActivity.class);
+			intent.putExtra("from", "me");
+			startActivity(intent);
+			break;
+		case R.id.btn_logout:
+			CustomApplcation.getInstance().logout();
+			getActivity().finish();
+			startActivity(new Intent(getActivity(), LoginActivity.class));
+			break;
+		case R.id.rl_switch_notification:
+			if (iv_open_notification.getVisibility() == View.VISIBLE) {
+				iv_open_notification.setVisibility(View.INVISIBLE);
+				iv_close_notification.setVisibility(View.VISIBLE);
+				mSharedUtil.setPushNotifyEnable(false);
+				rl_switch_vibrate.setVisibility(View.GONE);
+				rl_switch_voice.setVisibility(View.GONE);
+				view1.setVisibility(View.GONE);
+				view2.setVisibility(View.GONE);
+			} else {
+				iv_open_notification.setVisibility(View.VISIBLE);
+				iv_close_notification.setVisibility(View.INVISIBLE);
+				mSharedUtil.setPushNotifyEnable(true);
+				rl_switch_vibrate.setVisibility(View.VISIBLE);
+				rl_switch_voice.setVisibility(View.VISIBLE);
+				view1.setVisibility(View.VISIBLE);
+				view2.setVisibility(View.VISIBLE);
+			}
 
-				break;
-			case R.id.rl_switch_voice:
-				if (iv_open_voice.getVisibility() == View.VISIBLE) {
-					iv_open_voice.setVisibility(View.INVISIBLE);
-					iv_close_voice.setVisibility(View.VISIBLE);
-					mSharedUtil.setAllowVoiceEnable(false);
-				} else {
-					iv_open_voice.setVisibility(View.VISIBLE);
-					iv_close_voice.setVisibility(View.INVISIBLE);
-					mSharedUtil.setAllowVoiceEnable(true);
-				}
+			break;
+		case R.id.rl_switch_voice:
+			if (iv_open_voice.getVisibility() == View.VISIBLE) {
+				iv_open_voice.setVisibility(View.INVISIBLE);
+				iv_close_voice.setVisibility(View.VISIBLE);
+				mSharedUtil.setAllowVoiceEnable(false);
+			} else {
+				iv_open_voice.setVisibility(View.VISIBLE);
+				iv_close_voice.setVisibility(View.INVISIBLE);
+				mSharedUtil.setAllowVoiceEnable(true);
+			}
 
-				break;
-			case R.id.rl_switch_vibrate:
-				if (iv_open_vibrate.getVisibility() == View.VISIBLE) {
-					iv_open_vibrate.setVisibility(View.INVISIBLE);
-					iv_close_vibrate.setVisibility(View.VISIBLE);
-					mSharedUtil.setAllowVibrateEnable(false);
-				} else {
-					iv_open_vibrate.setVisibility(View.VISIBLE);
-					iv_close_vibrate.setVisibility(View.INVISIBLE);
-					mSharedUtil.setAllowVibrateEnable(true);
-				}
-				break;
+			break;
+		case R.id.rl_switch_vibrate:
+			if (iv_open_vibrate.getVisibility() == View.VISIBLE) {
+				iv_open_vibrate.setVisibility(View.INVISIBLE);
+				iv_close_vibrate.setVisibility(View.VISIBLE);
+				mSharedUtil.setAllowVibrateEnable(false);
+			} else {
+				iv_open_vibrate.setVisibility(View.VISIBLE);
+				iv_close_vibrate.setVisibility(View.INVISIBLE);
+				mSharedUtil.setAllowVibrateEnable(true);
+			}
+			break;
 
 		}
 	}

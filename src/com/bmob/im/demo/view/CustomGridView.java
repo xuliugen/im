@@ -4,7 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
-/** 自定义GridView
+/**
+ * 自定义GridView
+ * 
  * @ClassName: CustomGridView
  * @Description: TODO
  * @author smile
@@ -20,12 +22,11 @@ public class CustomGridView extends GridView {
 		super(context, attrs);
 	}
 
-
 	@Override
 	public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
+		int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
+				MeasureSpec.AT_MOST);
 		super.onMeasure(widthMeasureSpec, expandSpec);
 	}
-
 
 }

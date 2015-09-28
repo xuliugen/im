@@ -18,7 +18,9 @@ import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-/** 好友列表
+/**
+ * 好友列表
+ * 
  * @ClassName: UserFriendAdapter
  * @Description: TODO
  * @author smile
@@ -34,7 +36,9 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 		this.data = datas;
 	}
 
-	/** 当ListView数据发生变化时,调用此方法来更新ListView
+	/**
+	 * 当ListView数据发生变化时,调用此方法来更新ListView
+	 * 
 	 * @Title: updateListView
 	 * @Description: TODO
 	 * @param @param list
@@ -46,7 +50,7 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 		notifyDataSetChanged();
 	}
 
-	public void remove(User user){
+	public void remove(User user) {
 		this.data.remove(user);
 		notifyDataSetChanged();
 	}
@@ -88,9 +92,11 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 		final String avatar = friend.getAvatar();
 
 		if (!TextUtils.isEmpty(avatar)) {
-			ImageLoader.getInstance().displayImage(avatar, viewHolder.avatar, ImageLoadOptions.getOptions());
+			ImageLoader.getInstance().displayImage(avatar, viewHolder.avatar,
+					ImageLoadOptions.getOptions());
 		} else {
-			viewHolder.avatar.setImageDrawable(ct.getResources().getDrawable(R.drawable.head));
+			viewHolder.avatar.setImageDrawable(ct.getResources().getDrawable(
+					R.drawable.head));
 		}
 		viewHolder.name.setText(name);
 
@@ -128,7 +134,7 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 		for (int i = 0; i < getCount(); i++) {
 			String sortStr = data.get(i).getSortLetters();
 			char firstChar = sortStr.toUpperCase().charAt(0);
-			if (firstChar == section){
+			if (firstChar == section) {
 				return i;
 			}
 		}

@@ -43,7 +43,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		init();
-		//注册退出广播
+		// 注册退出广播
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(BmobConstants.ACTION_REGISTER_SUCCESS_FINISH);
 		registerReceiver(receiver, filter);
@@ -52,7 +52,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	}
 
 	public void showNotice() {
-		DialogTips dialog = new DialogTips(this,"提示",getResources().getString(R.string.show_notice), "确定",true,true);
+		DialogTips dialog = new DialogTips(this, "提示", getResources()
+				.getString(R.string.show_notice), "确定", true, true);
 		// 设置成功事件
 		dialog.SetOnSuccessListener(new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialogInterface, int userId) {
@@ -77,7 +78,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			if (intent != null && BmobConstants.ACTION_REGISTER_SUCCESS_FINISH.equals(intent.getAction())) {
+			if (intent != null
+					&& BmobConstants.ACTION_REGISTER_SUCCESS_FINISH
+							.equals(intent.getAction())) {
 				finish();
 			}
 		}
@@ -92,7 +95,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			startActivity(intent);
 		} else {
 			boolean isNetConnected = CommonUtils.isNetworkAvailable(this);
-			if(!isNetConnected){
+			if (!isNetConnected) {
 				ShowToast(R.string.network_tips);
 				return;
 			}
@@ -100,7 +103,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		}
 	}
 
-	private void login(){
+	private void login() {
 		String name = et_username.getText().toString();
 		String password = et_password.getText().toString();
 
@@ -114,8 +117,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			return;
 		}
 
-		final ProgressDialog progress = new ProgressDialog(
-				LoginActivity.this);
+		final ProgressDialog progress = new ProgressDialog(LoginActivity.this);
 		progress.setMessage("正在登陆...");
 		progress.setCanceledOnTouchOutside(false);
 		progress.show();
@@ -132,10 +134,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 						progress.setMessage("正在获取好友列表...");
 					}
 				});
-				//更新用户的地理位置以及好友的资料
+				// 更新用户的地理位置以及好友的资料
 				updateUserInfos();
 				progress.dismiss();
-				Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+				Intent intent = new Intent(LoginActivity.this,
+						MainActivity.class);
 				startActivity(intent);
 				finish();
 			}

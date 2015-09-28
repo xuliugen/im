@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.util.PixelUtil;
 
-/** 通讯录右侧快速滚动栏
+/**
+ * 通讯录右侧快速滚动栏
+ * 
  * @ClassName: MyLetterView
  * @Description: TODO
  * @author smile
@@ -59,7 +61,8 @@ public class MyLetterView extends View {
 		int singleHeight = height / b.length;// 获取每一个字母的高度
 
 		for (int i = 0; i < b.length; i++) {
-			paint.setColor(getResources().getColor(R.color.color_bottom_text_normal));
+			paint.setColor(getResources().getColor(
+					R.color.color_bottom_text_normal));
 			paint.setTypeface(Typeface.DEFAULT_BOLD);
 			paint.setAntiAlias(true);
 			paint.setTextSize(PixelUtil.sp2px(12));
@@ -86,41 +89,41 @@ public class MyLetterView extends View {
 		final int c = (int) (y / getHeight() * b.length);// 点击y坐标所占总高度的比例*b数组的长度就等于点击b中的个数.
 
 		switch (action) {
-			case MotionEvent.ACTION_UP:
-				setBackgroundDrawable(new ColorDrawable(0x00000000));
-				choose = -1;//
-				invalidate();
-				if (mTextDialog != null) {
-					mTextDialog.setVisibility(View.INVISIBLE);
-				}
-				break;
+		case MotionEvent.ACTION_UP:
+			setBackgroundDrawable(new ColorDrawable(0x00000000));
+			choose = -1;//
+			invalidate();
+			if (mTextDialog != null) {
+				mTextDialog.setVisibility(View.INVISIBLE);
+			}
+			break;
 
-			default:
-				//设置右侧字母列表[A,B,C,D,E....]的背景颜色
-				setBackgroundResource(R.drawable.v2_sortlistview_sidebar_background);
-				if (oldChoose != c) {
-					if (c >= 0 && c < b.length) {
-						if (listener != null) {
-							listener.onTouchingLetterChanged(b[c]);
-						}
-						if (mTextDialog != null) {
-							mTextDialog.setText(b[c]);
-							mTextDialog.setVisibility(View.VISIBLE);
-						}
-
-						choose = c;
-						invalidate();
+		default:
+			// 设置右侧字母列表[A,B,C,D,E....]的背景颜色
+			setBackgroundResource(R.drawable.v2_sortlistview_sidebar_background);
+			if (oldChoose != c) {
+				if (c >= 0 && c < b.length) {
+					if (listener != null) {
+						listener.onTouchingLetterChanged(b[c]);
 					}
-				}
+					if (mTextDialog != null) {
+						mTextDialog.setText(b[c]);
+						mTextDialog.setVisibility(View.VISIBLE);
+					}
 
-				break;
+					choose = c;
+					invalidate();
+				}
+			}
+
+			break;
 		}
 		return true;
 	}
 
 	/**
 	 * 向外公开的方法
-	 *
+	 * 
 	 * @param onTouchingLetterChangedListener
 	 */
 	public void setOnTouchingLetterChangedListener(
@@ -130,9 +133,9 @@ public class MyLetterView extends View {
 
 	/**
 	 * 接口
-	 *
+	 * 
 	 * @author coder
-	 *
+	 * 
 	 */
 	public interface OnTouchingLetterChangedListener {
 		public void onTouchingLetterChanged(String s);

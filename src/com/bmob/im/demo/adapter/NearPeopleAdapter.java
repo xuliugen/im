@@ -19,7 +19,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * 附近的人
- *
+ * 
  * @ClassName: BlackListAdapter
  * @Description: TODO
  * @author smile
@@ -53,15 +53,19 @@ public class NearPeopleAdapter extends BaseListAdapter<User> {
 		BmobGeoPoint location = contract.getLocation();
 		String currentLat = CustomApplcation.getInstance().getLatitude();
 		String currentLong = CustomApplcation.getInstance().getLongtitude();
-		if(location!=null && !currentLat.equals("") && !currentLong.equals("")){
-			double distance = DistanceOfTwoPoints(Double.parseDouble(currentLat),Double.parseDouble(currentLong),contract.getLocation().getLatitude(),
-					contract.getLocation().getLongitude());
-			tv_distance.setText(String.valueOf(distance)+"米");
-		}else{
+		if (location != null && !currentLat.equals("")
+				&& !currentLong.equals("")) {
+			double distance = DistanceOfTwoPoints(
+					Double.parseDouble(currentLat),
+					Double.parseDouble(currentLong), contract.getLocation()
+							.getLatitude(), contract.getLocation()
+							.getLongitude());
+			tv_distance.setText(String.valueOf(distance) + "米");
+		} else {
 			tv_distance.setText("未知");
 		}
 		tv_name.setText(contract.getUsername());
-		tv_logintime.setText("最近登录时间:"+contract.getUpdatedAt());
+		tv_logintime.setText("最近登录时间:" + contract.getUpdatedAt());
 		return convertView;
 	}
 
@@ -73,6 +77,7 @@ public class NearPeopleAdapter extends BaseListAdapter<User> {
 
 	/**
 	 * 根据两点间经纬度坐标（double值），计算两点间距离，
+	 * 
 	 * @param lat1
 	 * @param lng1
 	 * @param lat2
@@ -80,7 +85,7 @@ public class NearPeopleAdapter extends BaseListAdapter<User> {
 	 * @return 距离：单位为米
 	 */
 	public static double DistanceOfTwoPoints(double lat1, double lng1,
-											 double lat2, double lng2) {
+			double lat2, double lng2) {
 		double radLat1 = rad(lat1);
 		double radLat2 = rad(lat2);
 		double a = radLat1 - radLat2;

@@ -21,13 +21,16 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-/**图片浏览
+/**
+ * 图片浏览
+ * 
  * @ClassName: ImageBrowserActivity
  * @Description: TODO
  * @author smile
  * @date 2014-6-19 下午8:22:49
  */
-public class ImageBrowserActivity extends BaseActivity implements OnPageChangeListener{
+public class ImageBrowserActivity extends BaseActivity implements
+		OnPageChangeListener {
 
 	private CustomViewPager mSvpPager;
 	private ImageBrowserAdapter mAdapter;
@@ -73,11 +76,11 @@ public class ImageBrowserActivity extends BaseActivity implements OnPageChangeLi
 		mPosition = arg0;
 	}
 
-	private class ImageBrowserAdapter extends PagerAdapter{
+	private class ImageBrowserAdapter extends PagerAdapter {
 
 		private LayoutInflater inflater;
 
-		public ImageBrowserAdapter (Context context){
+		public ImageBrowserAdapter(Context context) {
 			this.inflater = LayoutInflater.from(context);
 		}
 
@@ -100,38 +103,43 @@ public class ImageBrowserActivity extends BaseActivity implements OnPageChangeLi
 					container, false);
 			final PhotoView photoView = (PhotoView) imageLayout
 					.findViewById(R.id.photoview);
-			final ProgressBar progress = (ProgressBar)imageLayout.findViewById(R.id.progress);
+			final ProgressBar progress = (ProgressBar) imageLayout
+					.findViewById(R.id.progress);
 
 			final String imgUrl = mPhotos.get(position);
-			ImageLoader.getInstance().displayImage(imgUrl, photoView, ImageLoadOptions.getOptions(),new SimpleImageLoadingListener() {
+			ImageLoader.getInstance().displayImage(imgUrl, photoView,
+					ImageLoadOptions.getOptions(),
+					new SimpleImageLoadingListener() {
 
-				@Override
-				public void onLoadingStarted(String imageUri, View view) {
-					// TODO Auto-generated method stub
-					progress.setVisibility(View.VISIBLE);
-				}
+						@Override
+						public void onLoadingStarted(String imageUri, View view) {
+							// TODO Auto-generated method stub
+							progress.setVisibility(View.VISIBLE);
+						}
 
-				@Override
-				public void onLoadingFailed(String imageUri, View view,
-											FailReason failReason) {
-					// TODO Auto-generated method stub
-					progress.setVisibility(View.GONE);
+						@Override
+						public void onLoadingFailed(String imageUri, View view,
+								FailReason failReason) {
+							// TODO Auto-generated method stub
+							progress.setVisibility(View.GONE);
 
-				}
+						}
 
-				@Override
-				public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-					// TODO Auto-generated method stub
-					progress.setVisibility(View.GONE);
-				}
+						@Override
+						public void onLoadingComplete(String imageUri,
+								View view, Bitmap loadedImage) {
+							// TODO Auto-generated method stub
+							progress.setVisibility(View.GONE);
+						}
 
-				@Override
-				public void onLoadingCancelled(String imageUri, View view) {
-					// TODO Auto-generated method stub
-					progress.setVisibility(View.GONE);
+						@Override
+						public void onLoadingCancelled(String imageUri,
+								View view) {
+							// TODO Auto-generated method stub
+							progress.setVisibility(View.GONE);
 
-				}
-			});
+						}
+					});
 
 			container.addView(imageLayout, 0);
 			return imageLayout;

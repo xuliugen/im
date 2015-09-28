@@ -22,7 +22,7 @@ public class PhotoUtil {
 
 	/**
 	 * 回收垃圾 recycle
-	 *
+	 * 
 	 * @throws
 	 */
 	public static void recycle(Bitmap bitmap) {
@@ -37,12 +37,12 @@ public class PhotoUtil {
 
 	/**
 	 * 获取指定路径下的图片的指定大小的缩略图 getImageThumbnail
-	 *
+	 * 
 	 * @return Bitmap
 	 * @throws
 	 */
 	public static Bitmap getImageThumbnail(String imagePath, int width,
-										   int height) {
+			int height) {
 		Bitmap bitmap = null;
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
@@ -74,7 +74,7 @@ public class PhotoUtil {
 
 	/**
 	 * saveBitmap
-	 *
+	 * 
 	 * @param @param filename---完整的路径格式-包含目录以及文件名
 	 * @param @param bitmap
 	 * @param @param isDelete --是否只留一张
@@ -82,7 +82,7 @@ public class PhotoUtil {
 	 * @throws
 	 */
 	public static void saveBitmap(String dirpath, String filename,
-								  Bitmap bitmap, boolean isDelete) {
+			Bitmap bitmap, boolean isDelete) {
 		File dir = new File(dirpath);
 		if (!dir.exists()) {
 			dir.mkdirs();
@@ -154,9 +154,11 @@ public class PhotoUtil {
 	}
 
 	/**
-	 *
+	 * 
 	 * 读取图片属性：旋转的角度
-	 * @param path 图片绝对路径
+	 * 
+	 * @param path
+	 *            图片绝对路径
 	 * @return degree旋转的角度
 	 */
 
@@ -168,15 +170,15 @@ public class PhotoUtil {
 					ExifInterface.TAG_ORIENTATION,
 					ExifInterface.ORIENTATION_NORMAL);
 			switch (orientation) {
-				case ExifInterface.ORIENTATION_ROTATE_90:
-					degree = 90;
-					break;
-				case ExifInterface.ORIENTATION_ROTATE_180:
-					degree = 180;
-					break;
-				case ExifInterface.ORIENTATION_ROTATE_270:
-					degree = 270;
-					break;
+			case ExifInterface.ORIENTATION_ROTATE_90:
+				degree = 90;
+				break;
+			case ExifInterface.ORIENTATION_ROTATE_180:
+				degree = 180;
+				break;
+			case ExifInterface.ORIENTATION_ROTATE_270:
+				degree = 270;
+				break;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -185,8 +187,9 @@ public class PhotoUtil {
 
 	}
 
-	/** 旋转图片一定角度
-	 * rotaingImageView
+	/**
+	 * 旋转图片一定角度 rotaingImageView
+	 * 
 	 * @return Bitmap
 	 * @throws
 	 */
@@ -202,7 +205,7 @@ public class PhotoUtil {
 
 	/**
 	 * 将图片变为圆角
-	 *
+	 * 
 	 * @param bitmap
 	 *            原Bitmap图片
 	 * @param pixels
@@ -232,8 +235,8 @@ public class PhotoUtil {
 	}
 
 	/**
-	 * 将图片转化为圆形头像 
-	 *
+	 * 将图片转化为圆形头像
+	 * 
 	 * @Title: toRoundBitmap
 	 * @throws
 	 */

@@ -65,6 +65,7 @@ public class FaceTextUtils {
 
 	/**
 	 * toSpannableString
+	 * 
 	 * @return SpannableString
 	 * @throws
 	 */
@@ -72,19 +73,23 @@ public class FaceTextUtils {
 		if (!TextUtils.isEmpty(text)) {
 			SpannableString spannableString = new SpannableString(text);
 			int start = 0;
-			Pattern pattern = Pattern.compile("\\\\ue[a-z0-9]{3}", Pattern.CASE_INSENSITIVE);
+			Pattern pattern = Pattern.compile("\\\\ue[a-z0-9]{3}",
+					Pattern.CASE_INSENSITIVE);
 			Matcher matcher = pattern.matcher(text);
 			while (matcher.find()) {
 				String faceText = matcher.group();
 				String key = faceText.substring(1);
 				BitmapFactory.Options options = new BitmapFactory.Options();
-				Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),
-						context.getResources().getIdentifier(key, "drawable", context.getPackageName()), options);
+				Bitmap bitmap = BitmapFactory.decodeResource(
+						context.getResources(),
+						context.getResources().getIdentifier(key, "drawable",
+								context.getPackageName()), options);
 				ImageSpan imageSpan = new ImageSpan(context, bitmap);
 				int startIndex = text.indexOf(faceText, start);
 				int endIndex = startIndex + faceText.length();
 				if (startIndex >= 0)
-					spannableString.setSpan(imageSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+					spannableString.setSpan(imageSpan, startIndex, endIndex,
+							Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 				start = (endIndex - 1);
 			}
 
@@ -94,23 +99,28 @@ public class FaceTextUtils {
 		}
 	}
 
-	public static SpannableString toSpannableString(Context context, String text, SpannableString spannableString) {
+	public static SpannableString toSpannableString(Context context,
+			String text, SpannableString spannableString) {
 
 		int start = 0;
-		Pattern pattern = Pattern.compile("\\\\ue[a-z0-9]{3}", Pattern.CASE_INSENSITIVE);
+		Pattern pattern = Pattern.compile("\\\\ue[a-z0-9]{3}",
+				Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(text);
 		while (matcher.find()) {
 			String faceText = matcher.group();
 			String key = faceText.substring(1);
 			BitmapFactory.Options options = new BitmapFactory.Options();
-//			options.inSampleSize = 2;
-			Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), context.getResources()
-					.getIdentifier(key, "drawable", context.getPackageName()), options);
+			// options.inSampleSize = 2;
+			Bitmap bitmap = BitmapFactory.decodeResource(
+					context.getResources(),
+					context.getResources().getIdentifier(key, "drawable",
+							context.getPackageName()), options);
 			ImageSpan imageSpan = new ImageSpan(context, bitmap);
 			int startIndex = text.indexOf(faceText, start);
 			int endIndex = startIndex + faceText.length();
 			if (startIndex >= 0)
-				spannableString.setSpan(imageSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				spannableString.setSpan(imageSpan, startIndex, endIndex,
+						Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			start = (endIndex - 1);
 		}
 

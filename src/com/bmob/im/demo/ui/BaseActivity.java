@@ -28,7 +28,9 @@ import com.bmob.im.demo.view.HeaderLayout.onLeftImageButtonClickListener;
 import com.bmob.im.demo.view.HeaderLayout.onRightImageButtonClickListener;
 import com.bmob.im.demo.view.dialog.DialogTips;
 
-/** 基类
+/**
+ * 基类
+ * 
  * @ClassName: BaseActivity
  * @Description: TODO
  * @author smile
@@ -87,7 +89,8 @@ public class BaseActivity extends FragmentActivity {
 			public void run() {
 				// TODO Auto-generated method stub
 				if (mToast == null) {
-					mToast = Toast.makeText(BaseActivity.this.getApplicationContext(), resId,
+					mToast = Toast.makeText(
+							BaseActivity.this.getApplicationContext(), resId,
 							Toast.LENGTH_LONG);
 				} else {
 					mToast.setText(resId);
@@ -97,45 +100,48 @@ public class BaseActivity extends FragmentActivity {
 		});
 	}
 
-	/** 打Log
-	 * ShowLog
+	/**
+	 * 打Log ShowLog
+	 * 
 	 * @return void
 	 * @throws
 	 */
-	public void ShowLog(String msg){
+	public void ShowLog(String msg) {
 		BmobLog.i(msg);
 	}
 
 	/**
 	 * 只有title initTopBarLayoutByTitle
+	 * 
 	 * @Title: initTopBarLayoutByTitle
 	 * @throws
 	 */
 	public void initTopBarForOnlyTitle(String titleName) {
-		mHeaderLayout = (HeaderLayout)findViewById(R.id.common_actionbar);
+		mHeaderLayout = (HeaderLayout) findViewById(R.id.common_actionbar);
 		mHeaderLayout.init(HeaderStyle.DEFAULT_TITLE);
 		mHeaderLayout.setDefaultTitle(titleName);
 	}
 
 	/**
 	 * 初始化标题栏-带左右按钮
+	 * 
 	 * @return void
 	 * @throws
 	 */
-	public void initTopBarForBoth(String titleName, int rightDrawableId,String text,
-								  onRightImageButtonClickListener listener) {
-		mHeaderLayout = (HeaderLayout)findViewById(R.id.common_actionbar);
+	public void initTopBarForBoth(String titleName, int rightDrawableId,
+			String text, onRightImageButtonClickListener listener) {
+		mHeaderLayout = (HeaderLayout) findViewById(R.id.common_actionbar);
 		mHeaderLayout.init(HeaderStyle.TITLE_DOUBLE_IMAGEBUTTON);
 		mHeaderLayout.setTitleAndLeftImageButton(titleName,
 				R.drawable.base_action_bar_back_bg_selector,
 				new OnLeftButtonClickListener());
-		mHeaderLayout.setTitleAndRightButton(titleName, rightDrawableId,text,
+		mHeaderLayout.setTitleAndRightButton(titleName, rightDrawableId, text,
 				listener);
 	}
 
 	public void initTopBarForBoth(String titleName, int rightDrawableId,
-								  onRightImageButtonClickListener listener) {
-		mHeaderLayout = (HeaderLayout)findViewById(R.id.common_actionbar);
+			onRightImageButtonClickListener listener) {
+		mHeaderLayout = (HeaderLayout) findViewById(R.id.common_actionbar);
 		mHeaderLayout.init(HeaderStyle.TITLE_DOUBLE_IMAGEBUTTON);
 		mHeaderLayout.setTitleAndLeftImageButton(titleName,
 				R.drawable.base_action_bar_back_bg_selector,
@@ -146,24 +152,25 @@ public class BaseActivity extends FragmentActivity {
 
 	/**
 	 * 只有左边按钮和Title initTopBarLayout
-	 *
+	 * 
 	 * @throws
 	 */
 	public void initTopBarForLeft(String titleName) {
-		mHeaderLayout = (HeaderLayout)findViewById(R.id.common_actionbar);
+		mHeaderLayout = (HeaderLayout) findViewById(R.id.common_actionbar);
 		mHeaderLayout.init(HeaderStyle.TITLE_DOUBLE_IMAGEBUTTON);
 		mHeaderLayout.setTitleAndLeftImageButton(titleName,
 				R.drawable.base_action_bar_back_bg_selector,
 				new OnLeftButtonClickListener());
 	}
 
-	/** 显示下线的对话框
-	 * showOfflineDialog
+	/**
+	 * 显示下线的对话框 showOfflineDialog
+	 * 
 	 * @return void
 	 * @throws
 	 */
 	public void showOfflineDialog(final Context context) {
-		DialogTips dialog = new DialogTips(this,"您的账号已在其他设备上登录!", "重新登录");
+		DialogTips dialog = new DialogTips(this, "您的账号已在其他设备上登录!", "重新登录");
 		// 设置成功事件
 		dialog.SetOnSuccessListener(new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialogInterface, int userId) {
@@ -195,27 +202,30 @@ public class BaseActivity extends FragmentActivity {
 	public void startAnimActivity(Intent intent) {
 		this.startActivity(intent);
 	}
-	/** 用于登陆或者自动登陆情况下的用户资料及好友资料的检测更新
+
+	/**
+	 * 用于登陆或者自动登陆情况下的用户资料及好友资料的检测更新
+	 * 
 	 * @Title: updateUserInfos
 	 * @Description: TODO
 	 * @param
 	 * @return void
 	 * @throws
 	 */
-	public void updateUserInfos(){
-		//更新地理位置信息
+	public void updateUserInfos() {
+		// 更新地理位置信息
 		updateUserLocation();
-		//查询该用户的好友列表(这个好友列表是去除黑名单用户的哦),目前支持的查询好友个数为100，如需修改请在调用这个方法前设置BmobConfig.LIMIT_CONTACTS即可。
-		//这里默认采取的是登陆成功之后即将好于列表存储到数据库中，并更新到当前内存中,
+		// 查询该用户的好友列表(这个好友列表是去除黑名单用户的哦),目前支持的查询好友个数为100，如需修改请在调用这个方法前设置BmobConfig.LIMIT_CONTACTS即可。
+		// 这里默认采取的是登陆成功之后即将好于列表存储到数据库中，并更新到当前内存中,
 		userManager.queryCurrentContactList(new FindListener<BmobChatUser>() {
 
 			@Override
 			public void onError(int arg0, String arg1) {
 				// TODO Auto-generated method stub
-				if(arg0==BmobConfig.CODE_COMMON_NONE){
+				if (arg0 == BmobConfig.CODE_COMMON_NONE) {
 					ShowLog(arg1);
-				}else{
-					ShowLog("查询好友列表失败："+arg1);
+				} else {
+					ShowLog("查询好友列表失败：" + arg1);
 				}
 			}
 
@@ -223,44 +233,56 @@ public class BaseActivity extends FragmentActivity {
 			public void onSuccess(List<BmobChatUser> arg0) {
 				// TODO Auto-generated method stub
 				// 保存到application中方便比较
-				CustomApplcation.getInstance().setContactList(CollectionUtils.list2map(arg0));
+				CustomApplcation.getInstance().setContactList(
+						CollectionUtils.list2map(arg0));
 			}
 		});
 	}
-	/** 更新用户的经纬度信息
+
+	/**
+	 * 更新用户的经纬度信息
+	 * 
 	 * @Title: uploadLocation
 	 * @Description: TODO
 	 * @param
 	 * @return void
 	 * @throws
 	 */
-	public void updateUserLocation(){
-		if(CustomApplcation.lastPoint!=null){
-			String saveLatitude  = mApplication.getLatitude();
+	public void updateUserLocation() {
+		if (CustomApplcation.lastPoint != null) {
+			String saveLatitude = mApplication.getLatitude();
 			String saveLongtitude = mApplication.getLongtitude();
-			String newLat = String.valueOf(CustomApplcation.lastPoint.getLatitude());
-			String newLong = String.valueOf(CustomApplcation.lastPoint.getLongitude());
-//			ShowLog("saveLatitude ="+saveLatitude+",saveLongtitude = "+saveLongtitude);
-//			ShowLog("newLat ="+newLat+",newLong = "+newLong);
-			if(!saveLatitude.equals(newLat)|| !saveLongtitude.equals(newLong)){//只有位置有变化就更新当前位置，达到实时更新的目的
+			String newLat = String.valueOf(CustomApplcation.lastPoint
+					.getLatitude());
+			String newLong = String.valueOf(CustomApplcation.lastPoint
+					.getLongitude());
+			// ShowLog("saveLatitude ="+saveLatitude+",saveLongtitude = "+saveLongtitude);
+			// ShowLog("newLat ="+newLat+",newLong = "+newLong);
+			if (!saveLatitude.equals(newLat) || !saveLongtitude.equals(newLong)) {// 只有位置有变化就更新当前位置，达到实时更新的目的
 				final User user = (User) userManager.getCurrentUser(User.class);
 				user.setLocation(CustomApplcation.lastPoint);
 				user.update(this, new UpdateListener() {
 					@Override
 					public void onSuccess() {
 						// TODO Auto-generated method stub
-						CustomApplcation.getInstance().setLatitude(String.valueOf(user.getLocation().getLatitude()));
-						CustomApplcation.getInstance().setLongtitude(String.valueOf(user.getLocation().getLongitude()));
-//						ShowLog("经纬度更新成功");
+						CustomApplcation.getInstance()
+								.setLatitude(
+										String.valueOf(user.getLocation()
+												.getLatitude()));
+						CustomApplcation.getInstance().setLongtitude(
+								String.valueOf(user.getLocation()
+										.getLongitude()));
+						// ShowLog("经纬度更新成功");
 					}
+
 					@Override
 					public void onFailure(int code, String msg) {
 						// TODO Auto-generated method stub
-//						ShowLog("经纬度更新 失败:"+msg);
+						// ShowLog("经纬度更新 失败:"+msg);
 					}
 				});
-			}else{
-//				ShowLog("用户位置未发生过变化");
+			} else {
+				// ShowLog("用户位置未发生过变化");
 			}
 		}
 	}

@@ -3,7 +3,9 @@ package com.bmob.im.demo.bean;
 import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.v3.datatype.BmobGeoPoint;
 
-/** 重载BmobChatUser对象：若还有其他需要增加的属性可在此添加
+/**
+ * 重载BmobChatUser对象：若还有其他需要增加的属性可在此添加
+ * 
  * @ClassName: TextUser
  * @Description: TODO
  * @author smile
@@ -33,18 +35,23 @@ public class User extends BmobChatUser {
 	public BmobGeoPoint getLocation() {
 		return location;
 	}
+
 	public void setLocation(BmobGeoPoint location) {
 		this.location = location;
 	}
+
 	public boolean getSex() {
 		return sex;
 	}
+
 	public void setSex(boolean sex) {
 		this.sex = sex;
 	}
+
 	public String getSortLetters() {
 		return sortLetters;
 	}
+
 	public void setSortLetters(String sortLetters) {
 		this.sortLetters = sortLetters;
 	}

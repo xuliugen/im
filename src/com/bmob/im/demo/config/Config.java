@@ -1,6 +1,8 @@
 package com.bmob.im.demo.config;
 
-/** 系统变量
+/**
+ * 系统变量
+ * 
  * @ClassName: Config
  * @Description: TODO
  * @author smile

@@ -36,7 +36,7 @@ public class ImageLoadOptions {
 				// .displayer(new RoundedBitmapDisplayer(20))//是否设置为圆角，弧度为多少
 				.displayer(new FadeInBitmapDisplayer(100))// 淡入
 				.build();
-		
+
 		return options;
 	}
 

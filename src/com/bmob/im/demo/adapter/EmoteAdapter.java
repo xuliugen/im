@@ -32,7 +32,9 @@ public class EmoteAdapter extends BaseArrayListAdapter {
 		}
 		FaceText faceText = (FaceText) getItem(position);
 		String key = faceText.text.substring(1);
-		Drawable drawable =mContext.getResources().getDrawable(mContext.getResources().getIdentifier(key, "drawable", mContext.getPackageName()));
+		Drawable drawable = mContext.getResources().getDrawable(
+				mContext.getResources().getIdentifier(key, "drawable",
+						mContext.getPackageName()));
 		holder.mIvImage.setImageDrawable(drawable);
 		return convertView;
 	}
