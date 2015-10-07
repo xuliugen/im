@@ -1,4 +1,4 @@
-package com.bomb.im;
+package com.bmob.im;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
